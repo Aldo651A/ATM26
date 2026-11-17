@@ -32,6 +32,18 @@ public class CardTest
         Assert.False(card.MatchesPin("1234")); // Nu är kortet spärrat, öven om man skriver in rätt pin.
 
     }
+
+    [Fact]
+    public void CardStoresDetailAndMatchesCorrectPinTest()
+    {
+        Account account = new Account(5000);
+        Card card = new Card("1234-5678", "1234", account);
+
+        Assert.Equal("1234-5678", card.CardNumber);
+        Assert.Equal("1234", card.PinCode);
+        Assert.Equal(account, card.Account);
+        Assert.True(card.MatchesPin("1234"));
+    }
        
 }
 
